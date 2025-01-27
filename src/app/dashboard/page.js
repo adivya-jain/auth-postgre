@@ -143,7 +143,7 @@ const InterestsPage = () => {
         </button>
         <button
           onClick={handlelogout}
-          className="w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800"
+          className="w-full bg-black text-white py-2 mt-4 rounded-lg hover:bg-gray-800"
         >
          Logout
         </button>
