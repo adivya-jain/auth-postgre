@@ -3,7 +3,9 @@ import React, { useState, useEffect } from "react";
 import { Interests } from "../../../constant";
 import Cookies from "js-cookie";
 import ProtectedRoute from "../protectedRoute";
+import { useRouter } from "next/navigation";
 const InterestsPage = () => {
+  const router = useRouter();
   const [selectedInterests, setSelectedInterests] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
@@ -49,6 +51,10 @@ const InterestsPage = () => {
     });
   };
 
+  const handlelogout = () => {
+    Cookies.remove("userId");
+    router.push("/login");
+  }
   const savePreferences = async () => {
     if (!userId) {
       console.error("User ID not found");
@@ -134,6 +140,12 @@ const InterestsPage = () => {
           className="w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800"
         >
           Save Preferences
+        </button>
+        <button
+          onClick={handlelogout}
+          className="w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800"
+        >
+         Logout
         </button>
       </div>
     </div>
