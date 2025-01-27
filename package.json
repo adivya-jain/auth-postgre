@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@tabler/icons-react": "^3.29.0",
+    "cookies": "^0.9.1",
     "dotenv": "^16.4.7",
+    "js-cookie": "^3.0.5",
     "next": "15.1.6",
     "pg": "^8.13.1",
     "react": "^19.0.0",

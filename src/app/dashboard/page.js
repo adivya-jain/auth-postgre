@@ -1,12 +1,13 @@
 'use client';
 import React, { useState, useEffect } from "react";
 import { Interests } from "../../../constant";
-
+import Cookies from "js-cookie";
+import ProtectedRoute from "../protectedRoute";
 const InterestsPage = () => {
   const [selectedInterests, setSelectedInterests] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
-  const userId = localStorage.getItem("userId");
+  const userId = Cookies.get("userId");
   const totalPages = Math.ceil(Interests.length / itemsPerPage);
 
   const paginatedInterests = Interests.slice(
@@ -16,7 +17,7 @@ const InterestsPage = () => {
 
   useEffect(() => {
     const fetchPreferences = async () => {
-      const userId = localStorage.getItem("userId");
+      const userId = Cookies.get("userId");
       if (!userId) {
         console.error("User ID not found ");
         return;
@@ -79,6 +80,7 @@ const InterestsPage = () => {
   };
 
   return (
+    <ProtectedRoute>  
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white shadow-md rounded-2xl p-6 w-96">
         <h2 className="text-xl font-semibold text-center mb-2 text-gray-600">
@@ -135,6 +137,7 @@ const InterestsPage = () => {
         </button>
       </div>
     </div>
+    </ProtectedRoute>
   );
 };
 

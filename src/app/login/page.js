@@ -3,6 +3,7 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Offers from "@/components/Offers";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 export default function Register() {
   const router = useRouter();
   const [error, setError] = useState(null);
@@ -33,7 +34,7 @@ export default function Register() {
         throw new Error(errorData.message || "Login failed");
         
       }
-      localStorage.setItem("userId", data.user.id);
+      Cookies.set("userId", data.user.id, { expires: 7 });
       router.push("/dashboard");
     } catch (error) {
       setError(error.message);
